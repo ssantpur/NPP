@@ -1,0 +1,10 @@
+#Set up the ATLAS environment
+setupATLAS
+asetup AtlasProduction,19.2.5.15,here
+
+#Command to run this
+Generate_tf.py --AMITag=e5023 --ecmEnergy=13000 --firstEvent=1 --jobConfig=MC15.${DSID}.MGPy8EG_A14N23LO_ZH_N2N2_${mg}_${mx}_${tim}.py --maxEvents=10000 --outputEVNTFile=${DSID}.pool.root --randomSeed=4 --runNumber=${DSID} --skipEvents=0
+
+#Get the truth derivation
+asetup AtlasDerivation,20.7.8.13,here ;
+Reco_tf.py --inputEVNTFile ${DSID}.pool.root --outputDAODFile ${DSID}.pool.root --reductionConf TRUTH1

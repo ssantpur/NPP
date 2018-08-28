@@ -1,0 +1,12 @@
+#Set up the ATLAS environment
+setupATLAS
+asetup AtlasProduction,19.2.5.15,here
+
+#Command to run this
+Generate_tf.py --AMITag=e5023 --ecmEnergy=13000 --firstEvent=1 --jobConfig=${JobOption} --maxEvents=10000 --outputEVNTFile=${DatasetID}.pool.root --randomSeed=4 --runNumber=${DatasetID} --skipEvents=0
+
+#Replace the ${JobOption} with the corresponding MC15*.py file and DatasetID with the appropriate number. For JO, make sure you use the correct one i.e. WH or ZH
+
+#Get the truth derivation
+asetup AtlasDerivation,20.7.8.13,here ;
+Reco_tf.py --inputEVNTFile ${DatasetD}.pool.root --outputDAODFile ${DatasetID}.pool.root --reductionConf TRUTH1
